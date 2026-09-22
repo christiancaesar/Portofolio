@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Christian Caesar — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --surface: #F2F1EC;
+    --ink: #1C2126;
+    --muted: #5B6169;
+    --accent: #2F6F5E;
+    --accent-soft: #E3ECE9;
+    --line: #D9D8D2;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #14161A;
+      --surface: #1B1E23;
+      --ink: #E9EAE6;
+      --muted: #9CA2A9;
+      --accent: #6FC2AC;
+      --accent-soft: #1F2B28;
+      --line: #2B2F35;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161A;
+    --surface: #1B1E23;
+    --ink: #E9EAE6;
+    --muted: #9CA2A9;
+    --accent: #6FC2AC;
+    --accent-soft: #1F2B28;
+    --line: #2B2F35;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  img, svg { max-width: 100%; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header.nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+  }
+  header.nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .nav-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    font-size: 15px;
+  }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+
+  main { padding-bottom: 100px; }
+
+  section { padding-top: 64px; }
+  section:first-of-type { padding-top: 56px; }
+
+  .hero .kicker {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 48px);
+    line-height: 1.12;
+    max-width: 14ch;
+  }
+  .hero p.lede {
+    margin-top: 22px;
+    max-width: 56ch;
+    font-size: 18px;
+    color: var(--muted);
+  }
+  .hero .focus {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .focus span {
+    font-size: 13.5px;
+    padding: 5px 12px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--muted);
+  }
+
+  h2.section-title {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .section-intro {
+    color: var(--muted);
+    max-width: 60ch;
+    margin-bottom: 36px;
+    font-size: 15.5px;
+  }
+
+  .about p { max-width: 62ch; margin: 0 0 16px; }
+  .about p:last-child { margin-bottom: 0; }
+
+  .project {
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+  }
+  .project:last-child { padding-bottom: 0; }
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .project h3 { font-size: 20px; }
+  .project .role {
+    font-size: 14px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .project p.desc {
+    margin: 14px 0 0;
+    max-width: 62ch;
+    color: var(--ink);
+  }
+  .project .stack {
+    margin-top: 16px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .project .stack b { color: var(--ink); font-weight: 500; }
+  .project .links {
+    margin-top: 14px;
+    display: flex;
+    gap: 18px;
+    font-size: 14.5px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 40px;
+  }
+  .skill-group h3 {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .skill-group p { margin: 0; font-size: 15.5px; }
+
+  .contact {
+    border-top: 1px solid var(--line);
+    margin-top: 64px;
+    padding-top: 40px;
+  }
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+    margin-top: 18px;
+  }
+  .contact-list a { color: var(--ink); }
+  .contact-list a:hover { color: var(--accent); }
+  .contact-list .label { color: var(--muted); font-size: 13.5px; display: inline-block; width: 84px; }
+
+  footer {
+    padding: 28px 0 40px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 640px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 14px; font-size: 14px; }
+    section { padding-top: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-name">Christian Caesar</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="kicker">Computer Science student, BINUS University</div>
+    <h1>I build software and turn data into decisions.</h1>
+    <p class="lede">I work across full-stack web development and data engineering — from shipping Laravel applications to building ETL pipelines and machine learning models. Currently looking for an internship where I can apply both.</p>
+    <div class="focus">
+      <span>Software Engineering</span>
+      <span>Data Engineering</span>
+      <span>Machine Learning</span>
+      <span>Bioinformatics</span>
+    </div>
+  </section>
+
+  <section id="about" class="about wrap">
+    <h2 class="section-title">About</h2>
+    <p class="section-intro" style="margin-bottom:0;">A short introduction, in your own words.</p>
+    <p>I'm a Computer Science student at BINUS University, with coursework spanning software engineering, data engineering, big data processing, bioinformatics, and computational biology. I like projects where I can go from raw data or a rough idea to something that actually works end to end — a working app, a clean pipeline, or a model that holds up.</p>
+    <p>Outside of coursework, I've been exploring mobile development with Dart and Flutter, comparing it against Swift's type system.</p>
+  </section>
+
+  <section id="projects" class="wrap">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-intro">A selection of coursework and team projects across web development, data engineering, and applied ML.</p>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Zentra</h3>
+        <span class="role">Group project · Software Engineering</span>
+      </div>
+      <p class="desc">A productivity web application with daily check-ins, task management, auto-rescheduling, time preferences, target setting, and weekly insights. Built with a teammate as part of course group K-13. I worked on Blade views, controllers, and database migrations, managed Git branches across the team, and debugged a popup warning system with faulty JavaScript event listeners.</p>
+      <div class="stack"><b>Stack:</b> Laravel, PHP, Blade, MySQL, Git</div>
+      <div class="links">
+        <a href="#">View repository</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Retail ETL Pipeline &amp; Dashboard</h3>
+        <span class="role">Data Engineering</span>
+      </div>
+      <p class="desc">Built a full ETL pipeline for a 12,575-row retail sales dataset, transforming it into a star schema warehouse with five dimension tables and one fact table. Along the way I recovered the database from an InnoDB corruption caused by a MySQL crash, then built a Power BI dashboard with KPI cards, revenue breakdowns, and time-series views.</p>
+      <div class="stack"><b>Stack:</b> Pentaho Spoon, MySQL, Power BI</div>
+      <div class="links">
+        <a href="#">View report</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Digital Behavior &amp; Mental Fatigue</h3>
+        <span class="role">Research · Group 11</span>
+      </div>
+      <p class="desc">A research project identifying digital behavior patterns associated with mental fatigue, using a hybrid K-Means and Random Forest model that reached roughly 86% accuracy. Submitted to ICACSIS 2026 via EasyChair. I handled conference formatting compliance and prepared a 14-slide presentation script and deck.</p>
+      <div class="stack"><b>Stack:</b> Python, K-Means, Random Forest, EasyChair</div>
+      <div class="links">
+        <a href="#">View paper</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Retail Customer Analytics</h3>
+        <span class="role">Data Analytics</span>
+      </div>
+      <p class="desc">An RFM clustering analysis of retail customer data, paired with hypothesis testing (Mann-Whitney U and Kruskal-Wallis) to validate behavioral differences between segments. Delivered as a written report, a Jupyter notebook, and a supporting Excel workbook.</p>
+      <div class="stack"><b>Stack:</b> Python, Pandas, RFM analysis, hypothesis testing</div>
+      <div class="links">
+        <a href="#">View notebook</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <h2 class="section-title">Skills</h2>
+    <p class="section-intro">Tools and methods I've used across coursework and projects.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages &amp; Frameworks</h3>
+        <p>Python, PHP (Laravel), SQL</p>
+      </div>
+      <div class="skill-group">
+        <h3>Data &amp; Analytics</h3>
+        <p>Power BI, Pentaho Spoon, Pandas, RFM analysis, hypothesis testing</p>
+      </div>
+      <div class="skill-group">
+        <h3>Machine Learning</h3>
+        <p>K-Means clustering, Random Forest, model evaluation</p>
+      </div>
+      <div class="skill-group">
+        <h3>Bioinformatics</h3>
+        <p>Sequence alignment (Needleman-Wunsch, Smith-Waterman), BLAST, phylogenetic analysis, MEGA11</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-intro" style="margin-bottom:0;">Open to internship opportunities in software engineering and data.</p>
+    <div class="contact-list">
+      <div><span class="label">Email</span><a href="mailto:christiancaesar11@gmail.com">christiancaesar11@gmail.com</a></div>
+      <div><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/christian-caesar-312005321/" target="_blank" rel="noopener">linkedin.com/in/christian-caesar</a></div>
+      <div><span class="label">Instagram</span><a href="https://instagram.com/christiancaesar11" target="_blank" rel="noopener">@christiancaesar11</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Christian Caesar — Computer Science, BINUS University
+</footer>
+
+</body>
+</html>
